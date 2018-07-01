@@ -4,6 +4,12 @@ class Xsync {
     public static macro function async() {
         return macro {trace("This comes from a macro!");}
     }
+
+    public static macro function go() {
+        return macro {
+            new Goblock();
+        }
+    }
 }
 
 class Chan<T> {
@@ -23,4 +29,9 @@ class Chan<T> {
 
 class Goblock {
     var _subblocks: Array<(String) -> Null<Int>>;
+
+    public function new() {
+
+    }
+
 }

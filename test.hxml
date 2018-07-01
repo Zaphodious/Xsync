@@ -1,5 +1,9 @@
 -cp src/
 -cp test/
 -main XTest
+--each
+
 
 -js build/test/output.js
+--next
+-x build/test/output.n
