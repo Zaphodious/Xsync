@@ -19,7 +19,7 @@ class Xsync {
 }
 
 class X_ximp {
-    public static function __go_imp<T>(goblock: Goblock): Chan<T> {
+    public static function __go_imp<T>(goblock: Goblock<T>): Chan<T> {
         return new Chan();
     }
 }
@@ -39,8 +39,11 @@ class Chan<T> {
 
 }
 
-class Goblock {
-    var _subblocks: Array<(String) -> Null<Int>>;
+class Goblock<T> {
+    var _nextCall: Null<(Goblock<T>) -> Any>;
+    var _retVal: Null<T>;
+    var _waitingOn: Chan<T>;
+    var _waitingToTake: Bool;
 
     public function new() {
 
