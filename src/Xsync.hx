@@ -1,14 +1,26 @@
 package ;
 
+import haxe.macro.Expr;
+
 class Xsync {
     public static macro function async() {
         return macro {trace("This comes from a macro!");}
     }
 
-    public static macro function go() {
+    public static macro function go(expr: Expr) {
         return macro {
-            new Goblock();
+            X_ximp.__go_imp(
+                new Goblock()
+            );
         }
+    }
+
+    
+}
+
+class X_ximp {
+    public static function __go_imp<T>(goblock: Goblock): Chan<T> {
+        return new Chan();
     }
 }
 
